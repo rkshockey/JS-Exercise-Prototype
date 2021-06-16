@@ -74,8 +74,15 @@ function Airplane(name) {
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
- function Car() {
-    
+ function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
+  }
+
+  Car.prototype.fill = function(gallons){
+    this.tank += gallons
   }
   
   
@@ -86,18 +93,24 @@ function Airplane(name) {
       - Besides the methods on Person.prototype, babies have the ability to `.play()`:
           + Should return a string "Playing with x", x being the favorite toy.
   */
- function Baby() {
-   
+ function Baby(name, age, favoriteToy) {
+   Person.call(this, name, age);
+   this.favoriteToy = favoriteToy;
+  }
+
+  Baby.prototype = Object.create(Person.prototype)
+  Baby.prototype.play = function(){
+    return `Playing with ${this.favoriteToy}`;
   }
  
   
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    1. Window binding is essentially an error and means you did not properly bind 'this'
+    2. Implicit binding references the object that the function is within, shown by the object name left of the dot in the invocation
+    3. Explicit binding defines the object being referenced within the parenthesis next to the call, apply or bind
+    4. new binding is used in contructor functions and references the newly created object
   */
   
   
